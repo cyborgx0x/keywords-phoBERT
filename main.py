@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import uvicorn
 from kw import get_keywords
+from pydantic import BaseModel
 
 app = FastAPI()
 class Task(BaseModel):

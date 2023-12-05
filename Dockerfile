@@ -33,9 +33,10 @@ RUN mv vi-vocab /vncorenlp/models/wordsegmenter/
 RUN mv wordsegmenter.rdr /vncorenlp/models/wordsegmenter/
 
 RUN git clone https://github.com/DatCanCode/sentence-transformers
-RUN cd sentence-transformers
+WORKDIR /code/sentence-transformers
 RUN pip install -e .
-
+RUN pip install underthesea
+WORKDIR /code/
 COPY phoBERT_sentence /code/phoBERT_sentence
 COPY bpe /code/bpe
 COPY kw.py /code/
@@ -45,5 +46,4 @@ COPY main.py /code/
 COPY entry.sh /code/
 RUN chmod +x /code/entry.sh
 EXPOSE 8000
-ENTRYPOINT [ "/code/entry.sh" ]
-
+CMD [ "uvicorn", "main:app", "--port",  "8000", "--host", "0.0.0.0" ]
