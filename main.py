@@ -1,9 +1,12 @@
 from fastapi import FastAPI
+import uvicorn
+from kw import get_keywords
 
 app = FastAPI()
-from kw import get_keywords
+class Task(BaseModel):
+    text: str
 
 
 @app.post("/")
-def read_item(item: str):
-    return get_keywords(item)
+def read_item(task: Task):
+    return get_keywords(task.text)

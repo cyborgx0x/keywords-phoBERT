@@ -1,0 +1,15 @@
+services:
+  # web:
+  #   build: .
+  #   ports:
+  #     - "5000:5000"
+  app:
+    entrypoint:
+    - sleep
+    - infinity
+    image: calssiq/eportal:dev-env
+    init: false
+    volumes:
+    - type: bind
+      source: /var/run/docker.sock
+      target: /var/run/docker.sock
