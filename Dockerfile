@@ -2,11 +2,13 @@ FROM python:3.10
 
 RUN apt update
 RUN apt install -y default-jre
+RUN apt install -y wget
 
 
 WORKDIR /code
 
-RUN pip install torch==2.1.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
+RUN pip install torch==2.1.2+cpu -f https://download.pytorch.org/whl/torch_stable.html
+
 RUN pip install transformers
 RUN pip install vncorenlp
 RUN pip install fairseq
